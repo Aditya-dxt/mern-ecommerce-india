@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <div className="px-10 py-20 text-center bg-gray-50">
@@ -9,9 +11,12 @@ export default function Home() {
         Discover fashion, electronics & lifestyle products at unbeatable prices.
       </p>
 
-      <button className="mt-8 px-8 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition">
+      <Link
+        to="/products"
+        className="inline-block mt-8 px-8 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+      >
         Shop Now
-      </button>
+      </Link>
     </div>
   );
 }
