@@ -16,19 +16,31 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Clean and scalable project structure
 - Git & GitHub version control
 
-### 🔜 Upcoming Features
-- Product listing & product cards
+### ✅ Implemented (Day-02)
+- Product listing page with grid layout
+- Reusable Product Card component
+- Dummy product data (API-ready structure)
 - Add to Cart functionality
-- Cart management using Context API
+- Cart management using **React Context API**
+- Live cart count update in Navbar
+- Cart page with product details
+- Remove item from cart
+- Total price calculation
+- Empty cart state handling
+
+### 🔜 Upcoming Features
 - User authentication (Email + Mobile + OTP)
-- Wishlist
+- Protected routes
+- Wishlist functionality
 - Reviews & ratings
 - Coupons & discounts
-- Order history & tracking
 - Address management
+- Checkout & order placement
+- Order history & tracking
 - Payment gateway integration (Razorpay)
 - Backend with Node.js & Express
 - MongoDB database integration
+
 
 ---
 
