@@ -28,19 +28,27 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Total price calculation
 - Empty cart state handling
 
+### ✅ Implemented (Day-03)
+- Authentication foundation using **React Context API**
+- Login functionality (Email-based, mock logic)
+- Global auth state management
+- Navbar auth state (Login / Logout)
+- **Guest-friendly cart** (add items without login)
+- **Buy Now** functionality on product cards
+- Auth-aware Buy Now flow (login required before checkout)
+- Login enforced only at checkout stage (real-world UX)
+- Clean separation of cart and authentication logic
+
 ### 🔜 Upcoming Features
-- User authentication (Email + Mobile + OTP)
-- Protected routes
-- Wishlist functionality
-- Reviews & ratings
-- Coupons & discounts
+- User registration (Email + Mobile number)
+- OTP verification (Email & SMS)
+- Forgot password flow with OTP
+- Protected checkout route
 - Address management
-- Checkout & order placement
-- Order history & tracking
+- Order placement & order history
 - Payment gateway integration (Razorpay)
 - Backend with Node.js & Express
 - MongoDB database integration
-
 
 ---
 
