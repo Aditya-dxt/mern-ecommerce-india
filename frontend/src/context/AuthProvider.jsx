@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+export default function AuthProvider({ children }) {
+  // ✅ Initialize state directly from localStorage
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  const login = (email) => {
-    setLoading(true);
-    setTimeout(() => {
-      setUser({ email });
-      setLoading(false);
-    }, 500);
+  const login = (userData) => {
+    const safeUser = { email: userData.email };
+    setUser(safeUser);
+    localStorage.setItem("user", JSON.stringify(safeUser));
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("user");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const { login, loading } = useContext(AuthContext);
@@ -15,7 +15,7 @@ export default function Login() {
 
   return (
     <div className="max-w-md mx-auto p-10">
-      <h2 className="text-3xl font-bold mb-6">Login</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -34,6 +34,22 @@ export default function Login() {
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
+
+      {/* Extra actions */}
+      <div className="mt-6 text-center space-y-2 text-sm">
+        <p>
+          <Link to="/forgot-password" className="text-indigo-600">
+            Forgot Password?
+          </Link>
+        </p>
+
+        <p className="text-gray-600">
+          Don&apos;t have an account?{" "}
+          <Link to="/register" className="text-indigo-600 font-medium">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
