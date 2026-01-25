@@ -95,7 +95,6 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ## ⚙️ Installation & Setup
 
-```bash
 git clone https://github.com/Aditya-dxt/mern-ecommerce-india.git
 cd mern-ecommerce-india/frontend
 npm install
