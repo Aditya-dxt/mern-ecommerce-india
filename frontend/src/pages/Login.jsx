@@ -1,51 +1,108 @@
 import { useContext, useState } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
-  const { login, loading } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+
+  const handleLogin = (e) => {
     e.preventDefault();
-    login(email);
-    navigate("/");
+
+    // Mock auth (logic unchanged)
+    login({ email });
+
+    const redirectTo = location.state?.redirectTo || "/";
+    const items = location.state?.items;
+
+    navigate(redirectTo, {
+      state: items ? { items } : null,
+    });
   };
 
   return (
-    <div className="max-w-md mx-auto p-10">
-      <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          className="w-full border p-3 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <button
-          className="w-full bg-indigo-600 text-white py-3 rounded"
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-
-      {/* Extra actions */}
-      <div className="mt-6 text-center space-y-2 text-sm">
-        <p>
-          <Link to="/forgot-password" className="text-indigo-600">
-            Forgot Password?
-          </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="bg-white shadow-xl rounded-xl w-full max-w-md p-8">
+        {/* Heading */}
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
+          Welcome Back
+        </h2>
+        <p className="text-center text-gray-500 mb-6">
+          Login to continue shopping
         </p>
 
-        <p className="text-gray-600">
-          Don&apos;t have an account?{" "}
-          <Link to="/register" className="text-indigo-600 font-medium">
+        {/* Form */}
+        <form onSubmit={handleLogin} className="space-y-4">
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+
+          {/* Remember + Forgot */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={remember}
+                onChange={() => setRemember(!remember)}
+              />
+              Remember me
+            </label>
+
+            <Link
+              to="/forgot-password"
+              className="text-indigo-600 hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-600 mt-6">
+          Don’t have an account?{" "}
+          <Link
+            to="/register"
+            className="text-indigo-600 font-medium hover:underline"
+          >
             Sign up
           </Link>
         </p>

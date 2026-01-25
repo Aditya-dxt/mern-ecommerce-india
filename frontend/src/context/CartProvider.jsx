@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 
 export default function CartProvider({ children }) {
-  // ✅ Load cart from localStorage on first render
+  // ✅ Lazy initialization (NO setState in useEffect)
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
-  // ✅ Persist cart whenever it changes
+  // ✅ Persist cart safely
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -17,13 +17,13 @@ export default function CartProvider({ children }) {
     setCart((prev) => [...prev, product]);
   };
 
+  // ✅ Removes ONLY the clicked item
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("cart");
   };
 
   return (

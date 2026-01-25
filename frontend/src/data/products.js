@@ -1,26 +1,26 @@
 const products = [
   {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 2999,
-    image: "https://via.placeholder.com/300",
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 4999,
-    image: "https://via.placeholder.com/300",
-  },
-  {
-    id: 3,
-    name: "Running Shoes",
+    id: "p1",
+    title: "Bluetooth Headset",
     price: 1999,
     image: "https://via.placeholder.com/300",
   },
   {
-    id: 4,
-    name: "Backpack",
-    price: 1499,
+    id: "p2",
+    title: "Wireless Speaker",
+    price: 2999,
+    image: "https://via.placeholder.com/300",
+  },
+  {
+    id: "p3",
+    title: "Smart Watch",
+    price: 4999,
+    image: "https://via.placeholder.com/300",
+  },
+  {
+    id: "p4",
+    title: "Bluetooth Earbuds",
+    price: 1599,
     image: "https://via.placeholder.com/300",
   },
 ];
