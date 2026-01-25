@@ -58,16 +58,28 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
+### ✅ Implemented (Day-05) 🚀  
+**Complete Checkout Flow & UI Stabilization**
+
+- 🔐 Protected checkout & cart routes (login required)
+- 🛒 Buy Now → Login → Checkout flow implemented
+- 📦 Checkout page with product summary & total price
+- 🏠 Delivery address page with clean, responsive form
+- ✅ Order success page with cart clearance
+- 🛠 Fixed cart item removal bug (single-item removal)
+- 🎨 UI restored & polished across Products, Login, Checkout & Address pages
+- 🧠 Production-level routing, state handling & defensive checks
+
+---
+
 ## 🔜 Upcoming Features
-- User registration (Email + Mobile number)
+- User registration with Email + Mobile number
 - OTP verification (Email & SMS)
 - Forgot password flow with OTP
-- Protected checkout route
-- Address management
-- Order placement & order history
 - Payment gateway integration (Razorpay)
 - Backend with Node.js & Express
 - MongoDB database integration
+- Order history & address persistence
 
 ---
 
