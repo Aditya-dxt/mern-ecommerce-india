@@ -11,6 +11,8 @@ import Checkout from "./pages/Checkout";
 import Address from "./pages/Address";
 import OrderSuccess from "./pages/OrderSuccess";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Payment from "./pages/Payment";
+
 
 export default function App() {
   return (
@@ -57,6 +59,7 @@ export default function App() {
           }
         />
 
+        <Route path="/payment" element={<Payment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />

@@ -37,7 +37,10 @@ export default function Address() {
     // Later → backend integration
     console.log("Address submitted:", address);
 
-    navigate("/order-success");
+    navigate("/payment", {
+  state: { totalAmount },
+});
+
   };
 
   if (!totalAmount) return null;
