@@ -14,7 +14,7 @@ export const createOrder = async (req, res) => {
     );
 
     const order = await Order.create({
-      userId: req.user._id, // 🔥 from token
+      userId: req.user._id,
       items,
       address,
       totalAmount,
@@ -27,10 +27,11 @@ export const createOrder = async (req, res) => {
   }
 };
 
-
 export const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find().sort({ createdAt: -1 });
+    const orders = await Order.find({ userId: req.user._id }).sort({
+      createdAt: -1,
+    });
 
     res.status(200).json({
       success: true,
@@ -38,9 +39,6 @@ export const getAllOrders = async (req, res) => {
       orders,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
