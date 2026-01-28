@@ -92,12 +92,36 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
+### ✅ Implemented (Day-07) 🛡️🔥  
+**Secure Auth Flow, Protected APIs & Real-world Testing**
+
+- 👤 User Registration API (`POST /api/auth/register`)
+- 🔑 JWT token generation on successful registration
+- 🛡 Protected Orders API using JWT middleware
+- 🔐 Authorization via `Bearer Token`
+- 📦 Order creation linked to authenticated user (`req.user._id`)
+- 📄 Order validation with required fields (`productId`, `price`, `quantity`)
+- 🧪 API testing using **Thunder Client**
+- 🐞 Debugged & fixed backend issues:
+  - `next is not a function`
+  - Missing Authorization header
+  - JWT verification failures
+  - Mongoose schema validation errors
+- 🧠 Clear auth flow understanding:
+  - Register → Token → Protected Routes
+- 📁 Backend structure finalized (models, controllers, middleware, routes)
+- 🧾 Clean API responses with proper status codes
+- 💾 Orders successfully stored & retrieved from MongoDB
+
+---
+
 ## 🔜 Upcoming Features
-- User registration with Email + Mobile number
-- OTP verification (Email & SMS)
-- Forgot password flow with OTP
+- User login API (Email + Password)
+- Token reuse & frontend-backend integration
 - User-specific orders (JWT protected)
 - Role-based access (Admin / User)
+- OTP verification (Email & SMS)
+- Forgot password flow
 - Payment gateway integration (Razorpay)
 - Order history & address persistence
 - Backend deployment (Render / Railway)
