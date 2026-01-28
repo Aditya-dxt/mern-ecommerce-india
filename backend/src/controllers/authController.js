@@ -37,3 +37,31 @@ export const registerUser = async (req, res, next) => {
     next(error); // 👈 THIS LINE FIXES EVERYTHING
   }
 };
+
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email & password required" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user || !(await user.matchPassword(password))) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.status(200).json({
+      success: true,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(user._id),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
