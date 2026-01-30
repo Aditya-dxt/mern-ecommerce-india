@@ -1,10 +1,14 @@
 import express from "express";
-import { getAllOrders, createOrder } from "../controllers/orderController.js";
+import {
+  createOrder,
+  getAllOrders,
+} from "../controllers/orderController.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// DO NOT use protect here
-router.get("/", getAllOrders);
-router.post("/", createOrder);
+// All order routes MUST be protected
+router.post("/", protect, createOrder);
+router.get("/", protect, getAllOrders);
 
 export default router;

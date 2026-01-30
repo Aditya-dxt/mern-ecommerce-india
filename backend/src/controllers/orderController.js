@@ -1,32 +1,60 @@
 import Order from "../models/Order.js";
+import Cart from "../models/Cart.js";
 
+// @desc    Create order from cart
+// @route   POST /api/orders
+// @access  Private
 export const createOrder = async (req, res) => {
   try {
-    const { items, address, paymentMethod } = req.body;
+    const { address, paymentMethod } = req.body;
 
-    if (!items || !address) {
-      return res.status(400).json({ message: "Items & address required" });
+    if (!address) {
+      return res.status(400).json({ message: "Address is required" });
     }
 
-    const totalAmount = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+    // 🔹 Get user's cart
+    const cart = await Cart.findOne({ user: req.user._id });
+
+    if (!cart || cart.items.length === 0) {
+      return res.status(400).json({ message: "Cart is empty" });
+    }
+
+    // 🔹 Create order items from cart
+    const orderItems = cart.items.map((item) => ({
+      productId: item.product._id,
+      name: item.product.name,
+      price: item.price,
+      quantity: item.quantity,
+    }));
+
+    const totalAmount = cart.totalPrice;
 
     const order = await Order.create({
       userId: req.user._id,
-      items,
+      items: orderItems,
       address,
       totalAmount,
       paymentMethod,
     });
 
-    res.status(201).json({ success: true, order });
+    // 🔹 Clear cart after order placed
+    cart.items = [];
+    cart.totalPrice = 0;
+    await cart.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Order placed successfully",
+      order,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// @desc    Get logged-in user's orders
+// @route   GET /api/orders
+// @access  Private
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.user._id }).sort({

@@ -1,28 +1,48 @@
 import mongoose from "mongoose";
 
+const orderItemSchema = new mongoose.Schema(
+  {
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true, // snapshot (important)
+    },
+    price: {
+      type: Number,
+      required: true, // snapshot
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+  },
+  { _id: false }
+);
+
 const orderSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
 
-    items: [
-      {
-        productId: { type: String, required: true },
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        quantity: { type: Number, required: true },
-      },
-    ],
+    items: {
+      type: [orderItemSchema],
+      required: true,
+    },
 
     address: {
-      fullName: String,
-      phone: String,
-      pincode: String,
-      city: String,
-      state: String,
-      addressLine: String,
+      fullName: { type: String, required: true },
+      phone: { type: String, required: true },
+      pincode: { type: String, required: true },
+      city: { type: String, required: true },
+      state: { type: String, required: true },
+      addressLine: { type: String, required: true },
     },
 
     totalAmount: {
@@ -42,13 +62,24 @@ const orderSchema = new mongoose.Schema(
       default: "pending",
     },
 
+    isPaid: {
+      type: Boolean,
+      default: false,
+    },
+
+    paidAt: Date,
+
     orderStatus: {
       type: String,
       enum: ["placed", "shipped", "delivered", "cancelled"],
       default: "placed",
     },
+
+    deliveredAt: Date,
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 export default mongoose.model("Order", orderSchema);
