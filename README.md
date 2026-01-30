@@ -119,7 +119,7 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Secure password comparison using **bcrypt**
 - JWT token generation on successful login
 - End-to-end authentication flow (Register → Login → Token → Protected APIs)
-- Fixed real **Node.js ES module import/export crash**
+- Fixed real **Node.js ES module import/export crashes**
 - Debugged server crashes caused by undefined controller bindings
 - Verified JWT-protected order routes using login token
 - Ensured backend stability before frontend integration
@@ -127,17 +127,56 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
-## 🔜 Upcoming Features (Day-09+)
-- Product model & product CRUD APIs
-- Admin-only routes & role-based access control
-- Public product listing API for frontend
-- Product categories & filtering
-- Image upload (Cloudinary)
-- Payment gateway integration (Razorpay)
-- Order history & address persistence
-- Email notifications
-- Backend deployment (Render / Railway)
+### ✅ Implemented (Day-09) 🛍️📦  
+**Products API & Public Catalog Backend**
 
+- Designed **Product model** with real-world fields
+- Product CRUD APIs (Admin-ready architecture)
+- Public product listing API
+- Product pagination & search support
+- Sorting by price & latest products
+- Product review system:
+  - Add product reviews
+  - Rating & review aggregation
+- Top-rated products API
+- Soft delete using `isActive`
+- MVC-aligned controllers & routes
+- Thorough API testing using Thunder Client
+
+---
+
+### ✅ Implemented (Day-10) 🛒💳📦  
+**Cart, Checkout & Orders (Production-Grade Backend)**
+
+- Cart model linked to authenticated users
+- Add items to cart API
+- Update cart item quantity API
+- Remove item from cart API
+- Clear entire cart API
+- Cart summary API (total items & price)
+- Secure cart routes using JWT middleware
+- Order placement from cart
+- Auto cart clearance after successful order
+- Address & payment method handling
+- Fetch logged-in user’s orders
+- End-to-end checkout flow tested via Thunder Client
+- Debugged real production-level issues:
+  - ES module export mismatches
+  - Controller-route sync issues
+  - Cart & order data consistency
+- Backend now mirrors **real e-commerce architecture**
+
+---
+
+## 🔜 Upcoming Features (Day-11+)
+- Admin order management (update order status)
+- Role-based access control (Admin / User)
+- Payment gateway integration (Razorpay / Stripe)
+- Order cancellation & refunds
+- Email notifications (Order confirmation)
+- Image upload using Cloudinary
+- Frontend-backend integration
+- Deployment (Render / Railway / Vercel)
 ## 🧠 Tech Stack
 
 ### Frontend
