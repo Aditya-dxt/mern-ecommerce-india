@@ -6,7 +6,7 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
-## 🚀 Features
+## 🚀 Featuress
 
 ### ✅ Implemented (Day-01)
 - Modern responsive UI using **React + Tailwind CSS**
