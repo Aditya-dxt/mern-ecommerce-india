@@ -6,7 +6,7 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
-## 🚀 Featuress
+## 🚀 Features
 
 ### ✅ Implemented (Day-01)
 - Modern responsive UI using **React + Tailwind CSS**
@@ -85,10 +85,7 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Implemented JWT-based authentication
 - Built authentication middleware to protect backend routes
 - Followed MVC architecture (models, controllers, routes)
-- Debugged real-world backend issues:
-  - MongoDB SRV & DNS errors
-  - Authentication & credential issues
-  - Environment variable loading problems
+- Debugged real-world backend issues
 
 ---
 
@@ -102,13 +99,7 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Order creation linked to authenticated user (`req.user._id`)
 - Order validation with required fields
 - API testing using **Thunder Client**
-- Debugged backend issues:
-  - `next is not a function`
-  - Missing Authorization header
-  - JWT verification failures
-  - Mongoose schema validation errors
 - Clean API responses with proper status codes
-- Orders successfully stored & retrieved from MongoDB
 
 ---
 
@@ -118,12 +109,9 @@ This project is being developed step-by-step to simulate a **real-world producti
 - Implemented **User Login API** (`POST /api/auth/login`)
 - Secure password comparison using **bcrypt**
 - JWT token generation on successful login
-- End-to-end authentication flow (Register → Login → Token → Protected APIs)
-- Fixed real **Node.js ES module import/export crashes**
-- Debugged server crashes caused by undefined controller bindings
-- Verified JWT-protected order routes using login token
-- Ensured backend stability before frontend integration
-- Comprehensive API testing using **Thunder Client**
+- End-to-end authentication flow
+- Fixed ES module import/export crashes
+- Backend stability ensured before frontend integration
 
 ---
 
@@ -131,17 +119,13 @@ This project is being developed step-by-step to simulate a **real-world producti
 **Products API & Public Catalog Backend**
 
 - Designed **Product model** with real-world fields
-- Product CRUD APIs (Admin-ready architecture)
+- Product CRUD APIs (Admin-ready)
 - Public product listing API
-- Product pagination & search support
-- Sorting by price & latest products
-- Product review system:
-  - Add product reviews
-  - Rating & review aggregation
+- Pagination, search & sorting
+- Product reviews & ratings system
 - Top-rated products API
 - Soft delete using `isActive`
-- MVC-aligned controllers & routes
-- Thorough API testing using Thunder Client
+- MVC-aligned backend architecture
 
 ---
 
@@ -149,34 +133,57 @@ This project is being developed step-by-step to simulate a **real-world producti
 **Cart, Checkout & Orders (Production-Grade Backend)**
 
 - Cart model linked to authenticated users
-- Add items to cart API
-- Update cart item quantity API
-- Remove item from cart API
-- Clear entire cart API
-- Cart summary API (total items & price)
-- Secure cart routes using JWT middleware
-- Order placement from cart
-- Auto cart clearance after successful order
+- Add / update / remove cart items APIs
+- Clear cart & cart summary APIs
+- Secure cart routes using JWT
+- Order placement directly from cart
+- Auto cart clearance after order
 - Address & payment method handling
-- Fetch logged-in user’s orders
-- End-to-end checkout flow tested via Thunder Client
-- Debugged real production-level issues:
-  - ES module export mismatches
-  - Controller-route sync issues
-  - Cart & order data consistency
-- Backend now mirrors **real e-commerce architecture**
+- Fetch logged-in user orders
+- Real-world checkout flow
+- Debugged controller-route & data consistency issues
 
 ---
 
-## 🔜 Upcoming Features (Day-11+)
-- Admin order management (update order status)
-- Role-based access control (Admin / User)
+### ✅ Implemented (Day-11) 🧑‍💼📊📦  
+**Admin Order Management, Stock Handling & Analytics**
+
+- Admin-only order management APIs
+- Fetch all orders (Admin)
+- Fetch single order details (Admin)
+- Update order status with strict state transitions:
+  - placed → shipped → delivered
+  - cancellation rules enforced
+- Prevent updates on delivered / cancelled orders
+- Order analytics API:
+  - Total orders
+  - Paid orders
+  - Total revenue
+- Stock-aware architecture:
+  - Product stock (`countInStock`) enforced
+  - Stock reduced automatically on order placement
+- Out-of-stock handling:
+  - “Buy Now” disabled for out-of-stock products
+  - Products can still be added to cart
+  - Checkout blocked if cart contains out-of-stock items
+  - Clear “Out of Stock” indicator shown in cart UI
+- Frontend cart & checkout validation synced with backend stock logic
+- Production-ready admin + user flow separation
+- End-to-end testing using **Thunder Client**
+
+---
+
+## 🔜 Upcoming Features (Day-12+)
+- Admin dashboard UI (orders, revenue, users)
+- Charts & analytics visualization
 - Payment gateway integration (Razorpay / Stripe)
 - Order cancellation & refunds
 - Email notifications (Order confirmation)
 - Image upload using Cloudinary
-- Frontend-backend integration
+- Full frontend-backend integration
 - Deployment (Render / Railway / Vercel)
+
+
 ## 🧠 Tech Stack
 
 ### Frontend
