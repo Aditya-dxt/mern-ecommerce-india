@@ -173,16 +173,56 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
-## 🔜 Upcoming Features (Day-12+)
-- Admin dashboard UI (orders, revenue, users)
-- Charts & analytics visualization
+### ✅ Implemented (Day-12) 📊📈🧑‍💼  
+**Admin Analytics Dashboard & Data Visualization**
+
+- Admin Dashboard UI (Protected Route)
+- Total Users / Orders / Products / Revenue summary cards
+- Monthly Revenue Aggregation (MongoDB Aggregation Pipeline)
+- Revenue Line Chart using **Recharts**
+- Order Status Distribution (Pie Chart)
+- Paid orders revenue calculation using `isPaid`
+- Role-based admin route protection
+- Seeder script for analytics testing
+- Production-level MongoDB data aggregation logic
+- Real-time analytics rendering from backend APIs
+- Clean chart component architecture (Reusable)
+
+**Backend Analytics APIs:**
+- `GET /api/admin/analytics/dashboard`
+- `GET /api/admin/analytics/revenue-monthly`
+- `GET /api/admin/analytics/order-status`
+- `GET /api/admin/analytics/top-products`
+- `GET /api/admin/analytics/low-stock`
+- `GET /api/admin/analytics/user-growth`
+
+---
+
+## 🔜 Upcoming Features (Day-13+)
+
 - Payment gateway integration (Razorpay / Stripe)
-- Order cancellation & refunds
+- Order cancellation & refund system
 - Email notifications (Order confirmation)
 - Image upload using Cloudinary
-- Full frontend-backend integration
+- Full frontend-backend integration polish
+- Performance optimization
 - Deployment (Render / Railway / Vercel)
+- Production logging & error monitoring
 
+---
+
+## 🏗️ Architecture Overview
+
+- Frontend: React + Tailwind + Context API
+- Backend: Node.js + Express (MVC)
+- Database: MongoDB Atlas (Mongoose ODM)
+- Authentication: JWT (Role-Based Access)
+- Charts: Recharts
+- Security: Protected Routes + Middleware
+- Environment Config: dotenv
+- Testing: Thunder Client
+
+---
 
 ## 🧠 Tech Stack
 
