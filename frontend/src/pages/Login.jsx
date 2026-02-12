@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import axios from "../utils/axios";
 
 export default function Login() {
   const { login } = useContext(AuthContext);
@@ -11,19 +12,29 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = async (e) => {
+  e.preventDefault();
 
-    // Mock auth (logic unchanged)
-    login({ email });
+  try {
+    const { data } = await axios.post("/auth/login", {
+      email,
+      password,
+    });
+
+    // Save full backend response
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    // Update context
+    login(data.user);
 
     const redirectTo = location.state?.redirectTo || "/";
-    const items = location.state?.items;
+    navigate(redirectTo);
 
-    navigate(redirectTo, {
-      state: items ? { items } : null,
-    });
-  };
+  } catch (error) {
+    alert(error.response?.data?.message || "Login failed");
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">

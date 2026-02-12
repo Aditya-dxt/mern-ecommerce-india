@@ -136,46 +136,6 @@ export const adminGetOrderById = async (req, res) => {
   }
 };
 
-// ===============================
-// ADMIN: UPDATE ORDER STATUS
-// ===============================
-export const adminUpdateOrderStatus = async (req, res) => {
-  try {
-    const { status } = req.body;
-
-    const allowed = ["placed", "shipped", "delivered", "cancelled"];
-    if (!allowed.includes(status)) {
-      return res.status(400).json({ message: "Invalid status" });
-    }
-
-    const order = await Order.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ message: "Order not found" });
-    }
-
-    if (["delivered", "cancelled"].includes(order.orderStatus)) {
-      return res
-        .status(400)
-        .json({ message: "Order cannot be updated" });
-    }
-
-    order.orderStatus = status;
-
-    if (status === "delivered") {
-      order.deliveredAt = new Date();
-    }
-
-    await order.save();
-
-    res.status(200).json({
-      success: true,
-      message: "Order status updated",
-      order,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
 
 // ===============================
 // ADMIN: ORDER ANALYTICS
@@ -195,6 +155,49 @@ export const adminOrderAnalytics = async (req, res) => {
       totalOrders,
       paidOrders,
       totalRevenue: revenueAgg[0]?.total || 0,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc   Admin update order status
+// @route  PUT /api/admin/orders/:id/status
+// @access Admin
+// @desc   Admin update order status
+// @route  PUT /api/admin/orders/:id/status
+// @access Admin
+export const adminUpdateOrderStatus = async (req, res) => {
+  try {
+    const { orderStatus } = req.body;
+
+    const validStatuses = ["placed", "shipped", "delivered", "cancelled"];
+
+    if (!validStatuses.includes(orderStatus)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    order.orderStatus = orderStatus;
+
+    if (orderStatus === "delivered") {
+      order.deliveredAt = Date.now();
+      order.isPaid = true;
+      order.paymentStatus = "paid";
+      order.paidAt = Date.now();
+    }
+
+    await order.save();
+
+    res.json({
+      success: true,
+      message: "Order status updated successfully",
+      order,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

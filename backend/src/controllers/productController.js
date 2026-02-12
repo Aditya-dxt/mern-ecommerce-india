@@ -196,3 +196,47 @@ export const getTopProducts = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// ===============================
+// @desc   Admin: Update product stock only
+// @route  PUT /api/admin/products/:id/stock
+// @access Admin
+// ===============================
+export const updateProductStock = async (req, res) => {
+  try {
+    const { countInStock } = req.body;
+
+    if (countInStock === undefined) {
+      return res.status(400).json({
+        message: "countInStock is required",
+      });
+    }
+
+    if (countInStock < 0) {
+      return res.status(400).json({
+        message: "Stock cannot be negative",
+      });
+    }
+
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+
+    product.countInStock = countInStock;
+    await product.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Stock updated successfully",
+      product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};

@@ -1,9 +1,7 @@
 export const adminOnly = (req, res, next) => {
   if (req.user && req.user.role === "admin") {
-    return next();
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied: Admin role required" });
   }
-
-  return res.status(403).json({
-    message: "Access denied. Admin only.",
-  });
 };

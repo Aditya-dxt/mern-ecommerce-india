@@ -12,6 +12,7 @@ import Address from "./pages/Address";
 import OrderSuccess from "./pages/OrderSuccess";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Payment from "./pages/Payment";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 
 export default function App() {
@@ -64,7 +65,15 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Routes>
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminDashboard />
+            </ProtectedRoute>
+        }
+        />
+        </Routes>
     </>
   );
 }

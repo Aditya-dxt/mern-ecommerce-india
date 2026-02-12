@@ -67,7 +67,9 @@ const orderSchema = new mongoose.Schema(
       default: false,
     },
 
-    paidAt: Date,
+    paidAt: {
+      type: Date,
+    },
 
     orderStatus: {
       type: String,
