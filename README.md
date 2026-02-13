@@ -198,16 +198,45 @@ This project is being developed step-by-step to simulate a **real-world producti
 
 ---
 
-## 🔜 Upcoming Features (Day-13+)
+### ✅ Implemented (Day-13) 💳🔥  
+**Stripe Payment Integration (Production-Level)**
 
-- Payment gateway integration (Razorpay / Stripe)
+- Secure Stripe PaymentIntent creation
+- Backend-controlled payment amount validation
+- Stripe metadata linked with Order & User
+- Webhook integration with signature verification
+- Raw body parsing for Stripe security
+- Automatic order payment update on `payment_intent.succeeded`
+- Secure storage of `stripePaymentIntentId`
+- Stripe CLI local webhook testing
+- Payment status sync with database (`isPaid`, `paymentStatus`)
+- Production-ready payment architecture
+
+---
+
+## 🛡️ Security Highlights
+
+- JWT-based authentication
+- Role-based admin access control
+- Backend-controlled payment amount validation
+- Stripe webhook signature verification
+- Secure environment variable handling
+- Protected API routes
+- Stock & order integrity validation
+
+---
+
+## 🔜 Upcoming Features (Day-14+)
+
+- Razorpay integration (optional India gateway)
 - Order cancellation & refund system
-- Email notifications (Order confirmation)
+- Email notifications (Order confirmation & shipping updates)
 - Image upload using Cloudinary
-- Full frontend-backend integration polish
+- Full frontend-backend Stripe Elements integration
 - Performance optimization
 - Deployment (Render / Railway / Vercel)
 - Production logging & error monitoring
+- CI/CD pipeline
 
 ---
 
