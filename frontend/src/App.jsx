@@ -12,7 +12,9 @@ import Address from "./pages/Address";
 import OrderSuccess from "./pages/OrderSuccess";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import MyOrders from "./pages/MyOrders";
 
 
 export default function App() {
@@ -23,6 +25,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/payment/:orderId" element={<Payment />} />
+        <Route path="/order-success/:orderId" element={<PaymentSuccess />} />
+        <Route path="/my-orders" element={<MyOrders />} />
 
         <Route
           path="/cart"

@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { CartContext } from "../context/CartContext";
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
-  const { cart } = useContext(CartContext);
   const [open, setOpen] = useState(false);
 
-  // ✅ ABSOLUTELY SAFE (never crashes)
   const avatarLetter =
     user && user.email ? user.email[0].toUpperCase() : "?";
 
@@ -21,7 +18,7 @@ export default function Navbar() {
       <div className="flex items-center gap-6">
         <Link to="/">Home</Link>
         <Link to="/products">Shop</Link>
-        <Link to="/cart">Cart ({cart.length})</Link>
+        <Link to="/cart">Cart</Link>
 
         {user ? (
           <div className="relative">

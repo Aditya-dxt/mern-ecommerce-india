@@ -16,14 +16,13 @@ const app = express();
 app.use(cors());
 
 /* =========================
-   STRIPE WEBHOOK (RAW BODY)
+   STRIPE WEBHOOK (RAW BODY FIRST)
    ========================= */
 app.use(
   "/api/webhook/stripe",
   express.raw({ type: "application/json" })
 );
 
-// Register webhook route AFTER raw body
 app.use("/api/webhook", webhookRoutes);
 
 /* =========================
@@ -32,7 +31,9 @@ app.use("/api/webhook", webhookRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
+/* =========================
+   ROUTES
+   ========================= */
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);

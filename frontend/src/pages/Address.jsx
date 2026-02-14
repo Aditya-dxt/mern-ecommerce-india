@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "../utils/axios";
 
 export default function Address() {
   const navigate = useNavigate();
@@ -7,9 +8,8 @@ export default function Address() {
 
   const totalAmount = location.state?.totalAmount;
 
-  // ✅ Hooks must be called unconditionally
-  const [address, setAddress] = useState({
-    name: "",
+  const [formData, setFormData] = useState({
+    fullName: "",
     phone: "",
     pincode: "",
     city: "",
@@ -17,7 +17,10 @@ export default function Address() {
     addressLine: "",
   });
 
-  // ✅ Redirect safely using useEffect
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Prevent direct access
   useEffect(() => {
     if (!totalAmount) {
       navigate("/", { replace: true });
@@ -25,22 +28,55 @@ export default function Address() {
   }, [totalAmount, navigate]);
 
   const handleChange = (e) => {
-    setAddress({
-      ...address,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Later → backend integration
-    console.log("Address submitted:", address);
+    if (loading) return;
 
-    navigate("/payment", {
-  state: { totalAmount },
-});
+    try {
+      setLoading(true);
+      setError("");
 
+      // 🔥 Create Order (Match Schema Exactly)
+      const orderRes = await axios.post("/orders", {
+        address: {
+          fullName: formData.fullName,
+          phone: formData.phone,
+          pincode: formData.pincode,
+          city: formData.city,
+          state: formData.state,
+          addressLine: formData.addressLine,
+        },
+        paymentMethod: "Stripe", // 🔥 Must match enum exactly
+      });
+
+      const orderId = orderRes.data.order._id;
+
+      // 🔥 Create PaymentIntent
+      const paymentRes = await axios.post(
+        `/payment/create-payment-intent/${orderId}`
+      );
+
+      const { clientSecret, publishableKey } = paymentRes.data;
+
+      // 🔥 Navigate to Payment Page
+      navigate(`/payment/${orderId}`, {
+        state: { clientSecret, publishableKey },
+      });
+
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+        "Something went wrong. Please try again."
+      );
+      setLoading(false);
+    }
   };
 
   if (!totalAmount) return null;
@@ -57,9 +93,9 @@ export default function Address() {
       >
         <input
           type="text"
-          name="name"
+          name="fullName"
           placeholder="Full Name"
-          value={address.name}
+          value={formData.fullName}
           onChange={handleChange}
           required
           className="w-full border p-3 rounded-lg"
@@ -69,7 +105,7 @@ export default function Address() {
           type="tel"
           name="phone"
           placeholder="Mobile Number"
-          value={address.phone}
+          value={formData.phone}
           onChange={handleChange}
           required
           className="w-full border p-3 rounded-lg"
@@ -79,7 +115,7 @@ export default function Address() {
           type="text"
           name="pincode"
           placeholder="Pincode"
-          value={address.pincode}
+          value={formData.pincode}
           onChange={handleChange}
           required
           className="w-full border p-3 rounded-lg"
@@ -90,7 +126,7 @@ export default function Address() {
             type="text"
             name="city"
             placeholder="City"
-            value={address.city}
+            value={formData.city}
             onChange={handleChange}
             required
             className="w-full border p-3 rounded-lg"
@@ -100,7 +136,7 @@ export default function Address() {
             type="text"
             name="state"
             placeholder="State"
-            value={address.state}
+            value={formData.state}
             onChange={handleChange}
             required
             className="w-full border p-3 rounded-lg"
@@ -110,14 +146,19 @@ export default function Address() {
         <textarea
           name="addressLine"
           placeholder="House No, Street, Area"
-          value={address.addressLine}
+          value={formData.addressLine}
           onChange={handleChange}
           required
           rows={3}
           className="w-full border p-3 rounded-lg"
         />
 
-        {/* Total */}
+        {error && (
+          <p className="text-red-500 text-sm">
+            {error}
+          </p>
+        )}
+
         <div className="flex justify-between text-lg font-semibold pt-4 border-t">
           <span>Total Payable</span>
           <span className="text-indigo-600">
@@ -127,9 +168,10 @@ export default function Address() {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-3 rounded-xl text-lg hover:bg-indigo-700 transition"
+          disabled={loading}
+          className="w-full bg-indigo-600 text-white py-3 rounded-xl text-lg hover:bg-indigo-700 transition disabled:opacity-50"
         >
-          Place Order
+          {loading ? "Processing..." : "Proceed to Payment"}
         </button>
       </form>
     </div>

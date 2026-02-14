@@ -1,45 +1,39 @@
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext);
-  const navigate = useNavigate();
+  const handleAddToCart = async () => {
+    try {
+      await axios.post("/cart", {
+        productId: product._id,
+        quantity: 1,
+      });
 
-  const handleBuyNow = () => {
-    addToCart(product);
-    navigate("/checkout");
+      alert("Added to cart");
+    } catch (error) {
+      alert(error.response?.data?.message || "Error adding to cart");
+    }
   };
 
   return (
     <div className="border rounded-lg p-4 shadow-sm">
       <img
         src={product.image}
-        alt={product.title}
+        alt={product.name}
         className="h-40 w-full object-cover rounded"
       />
 
       <h3 className="mt-3 font-semibold text-lg">
-        {product.title}
+        {product.name}
       </h3>
 
       <p className="text-gray-600 mt-1">₹{product.price}</p>
 
-      <div className="flex gap-2 mt-4">
-        <button
-          onClick={() => addToCart(product)}
-          className="flex-1 border border-indigo-600 text-indigo-600 py-2 rounded"
-        >
-          Add to Cart
-        </button>
-
-        <button
-          onClick={handleBuyNow}
-          className="flex-1 bg-indigo-600 text-white py-2 rounded"
-        >
-          Buy Now
-        </button>
-      </div>
+      <button
+        onClick={handleAddToCart}
+        className="mt-4 w-full bg-indigo-600 text-white py-2 rounded"
+      >
+        Add to Cart
+      </button>
     </div>
   );
 }

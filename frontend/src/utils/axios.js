@@ -10,11 +10,11 @@ instance.interceptors.request.use(
     const userData = localStorage.getItem("user");
     if (userData) {
       const user = JSON.parse(userData);
-      if (user?.token) {
-        config.headers.Authorization = `Bearer ${user.token}`;
-      }
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user.token}`;
+  }
     }
-    return config;
+  return config;
   },
   (error) => Promise.reject(error)
 );

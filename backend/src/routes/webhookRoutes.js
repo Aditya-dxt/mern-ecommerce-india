@@ -3,11 +3,6 @@ import { stripeWebhook } from "../controllers/webhookController.js";
 
 const router = express.Router();
 
-// IMPORTANT: raw body required for Stripe signature verification
-router.post(
-  "/stripe",
-  express.raw({ type: "application/json" }),
-  stripeWebhook
-);
+router.post("/stripe", stripeWebhook);
 
 export default router;

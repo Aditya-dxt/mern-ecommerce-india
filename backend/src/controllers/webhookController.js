@@ -17,7 +17,11 @@ export const stripeWebhook = async (req, res) => {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Handle successful payment
+  console.log("🔔 Stripe Event Received:", event.type);
+
+  // =========================
+  // PAYMENT SUCCESS
+  // =========================
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object;
 
@@ -25,7 +29,7 @@ export const stripeWebhook = async (req, res) => {
 
     const order = await Order.findById(orderId);
 
-    if (order) {
+    if (order && !order.isPaid) {
       order.paymentStatus = "paid";
       order.isPaid = true;
       order.paidAt = Date.now();
@@ -35,7 +39,9 @@ export const stripeWebhook = async (req, res) => {
     }
   }
 
-  // Handle failed payment
+  // =========================
+  // PAYMENT FAILED
+  // =========================
   if (event.type === "payment_intent.payment_failed") {
     const paymentIntent = event.data.object;
 

@@ -10,36 +10,44 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const { data } = await axios.post("/auth/login", {
-      email,
-      password,
-    });
+    if (loading) return;
 
-    // Save full backend response
-    localStorage.setItem("user", JSON.stringify(data.user));
+    try {
+      setLoading(true);
+      setError("");
 
-    // Update context
-    login(data.user);
+      const { data } = await axios.post("/auth/login", {
+        email,
+        password,
+      });
 
-    const redirectTo = location.state?.redirectTo || "/";
-    navigate(redirectTo);
+      // 🔥 Store full user object (includes token)
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-  } catch (error) {
-    alert(error.response?.data?.message || "Login failed");
-  }
-};
+      // Update context
+      login(data.user);
 
+      const redirectTo = location.state?.redirectTo || "/";
+      navigate(redirectTo);
+
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Login failed. Please try again."
+      );
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="bg-white shadow-xl rounded-xl w-full max-w-md p-8">
-        {/* Heading */}
+        
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
           Welcome Back
         </h2>
@@ -47,8 +55,8 @@ export default function Login() {
           Login to continue shopping
         </p>
 
-        {/* Form */}
         <form onSubmit={handleLogin} className="space-y-4">
+          
           {/* Email */}
           <div>
             <label className="block text-sm font-medium mb-1">
@@ -79,35 +87,23 @@ export default function Login() {
             />
           </div>
 
-          {/* Remember + Forgot */}
-          <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={() => setRemember(!remember)}
-              />
-              Remember me
-            </label>
-
-            <Link
-              to="/forgot-password"
-              className="text-indigo-600 hover:underline"
-            >
-              Forgot password?
-            </Link>
-          </div>
+          {/* Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm">
+              {error}
+            </p>
+          )}
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition"
+            disabled={loading}
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition disabled:opacity-50"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        {/* Footer */}
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
           <Link
