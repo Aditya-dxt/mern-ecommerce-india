@@ -11,3 +11,5 @@ router.get('/', protect, admin, getAllOrders);
 router.put('/:id/status', protect, admin, updateOrderStatus);
 
 module.exports = router;
+
+// Day 9: Added GET /stats/summary route
