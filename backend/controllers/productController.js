@@ -192,3 +192,5 @@ module.exports = {
   getProducts, getProduct, searchAutocomplete,
   createProduct, updateProduct, deleteProduct, getAdminProducts
 };
+
+// Day 9: Added text search across name, brand, description, tags
