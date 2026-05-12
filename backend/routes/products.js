@@ -17,3 +17,5 @@ router.get('/:productId/reviews', getProductReviews);
 router.post('/:productId/reviews', protect, createReview);
 
 module.exports = router;
+
+// Day 9: Added admin-only routes for create, update, delete
