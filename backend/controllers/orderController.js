@@ -223,3 +223,5 @@ module.exports = {
   createOrder, getMyOrders, getOrder,
   getAllOrders, updateOrderStatus, getOrderStats
 };
+
+// Day 9: Added aggregation pipeline for admin stats
