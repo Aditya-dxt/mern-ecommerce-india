@@ -195,3 +195,4 @@ module.exports = {
 
 // Day 9: Added text search across name, brand, description, tags
 // Day 9: Added sort by -averageRating, -createdAt, price
+// Day 9: Filter by minPrice and maxPrice query params
