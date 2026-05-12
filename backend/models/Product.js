@@ -98,3 +98,5 @@ productSchema.index({ name: 'text', brand: 'text', description: 'text', tags: 't
 productSchema.index({ category: 1, brand: 1, price: 1 });
 
 module.exports = mongoose.model('Product', productSchema);
+
+// Day 9: Added compound indexes for category + brand + price
