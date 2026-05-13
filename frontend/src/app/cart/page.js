@@ -206,3 +206,5 @@ function SummaryRow({ label, value }) {
     </div>
   );
 }
+
+// Day 10: Added free shipping progress bar
