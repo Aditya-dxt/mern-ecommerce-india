@@ -49,3 +49,5 @@ export function AuthProvider({ children }) {
 }
 
 export const useAuth = () => useContext(AuthContext);
+
+// Day 10: Auto-load profile when token exists
