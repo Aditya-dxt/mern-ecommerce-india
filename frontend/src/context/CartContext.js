@@ -102,3 +102,5 @@ export function CartProvider({ children }) {
 }
 
 export const useCart = () => useContext(CartContext);
+
+// Day 10: Added server sync for authenticated users
