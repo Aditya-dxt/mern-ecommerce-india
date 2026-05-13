@@ -209,3 +209,4 @@ function SummaryRow({ label, value }) {
 
 // Day 10: Added free shipping progress bar
 // Day 10: Added quantity validation against stock
+// Day 10: Added tax calculation at 8%
