@@ -59,3 +59,5 @@ const admin = (req, res, next) => {
 };
 
 module.exports = { protect, admin };
+
+// Day 11: Added admin role verification
