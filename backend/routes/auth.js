@@ -12,3 +12,5 @@ router.get('/users', protect, admin, getAllUsers);
 router.put('/users/:id/role', protect, admin, updateUserRole);
 
 module.exports = router;
+
+// Day 11: Added GET /users (admin)
