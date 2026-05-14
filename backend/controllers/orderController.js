@@ -226,3 +226,4 @@ module.exports = {
 
 // Day 9: Added aggregation pipeline for admin stats
 // Day 11: Added delivery status management
+// Day 11: Added stock reduction on order creation
