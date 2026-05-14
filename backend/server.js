@@ -48,3 +48,5 @@ app.listen(PORT, () => {
   console.log(`🚀 SneakerVault API running on port ${PORT}`);
   console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
 });
+
+// Day 11: Organized route mounting
