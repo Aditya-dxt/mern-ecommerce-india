@@ -227,3 +227,5 @@ const updateUserRole = async (req, res, next) => {
 };
 
 module.exports = { register, login, getProfile, updateProfile, updateAddress, getAllUsers, updateUserRole };
+
+// Day 11: Added admin-only user listing
