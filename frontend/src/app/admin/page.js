@@ -372,3 +372,4 @@ export default function AdminPage() {
 // Day 12: Dashboard stats cards
 // Day 12: Order management table
 // Day 12: Product CRUD
+// Day 12: User management
