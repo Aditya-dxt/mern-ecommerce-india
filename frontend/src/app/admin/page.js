@@ -370,3 +370,4 @@ export default function AdminPage() {
 }
 
 // Day 12: Dashboard stats cards
+// Day 12: Order management table
