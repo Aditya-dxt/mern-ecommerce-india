@@ -368,3 +368,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+// Day 12: Dashboard stats cards
