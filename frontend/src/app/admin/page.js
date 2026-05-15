@@ -374,3 +374,4 @@ export default function AdminPage() {
 // Day 12: Product CRUD
 // Day 12: User management
 // Day 12: Responsive sidebar
+// Day 12: Status badge rendering
