@@ -8,3 +8,5 @@ router.post('/webhook', express.raw({ type: 'application/json' }), handleWebhook
 router.get('/verify', protect, verifyPayment);
 
 module.exports = router;
+
+// Day 13: Added verify route
