@@ -133,3 +133,4 @@ module.exports = { createCheckoutSession, handleWebhook, verifyPayment };
 // Day 13: Webhook handler for checkout.session.completed
 // Day 13: Payment verification with session retrieval
 // Day 13: Filter non-HTTPS image URLs
+// Day 13: Detailed error logging
