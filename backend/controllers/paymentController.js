@@ -131,3 +131,4 @@ const verifyPayment = async (req, res, next) => {
 module.exports = { createCheckoutSession, handleWebhook, verifyPayment };
 
 // Day 13: Webhook handler for checkout.session.completed
+// Day 13: Payment verification with session retrieval
