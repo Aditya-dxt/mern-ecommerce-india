@@ -92,3 +92,4 @@ orderSchema.index({ paymentStatus: 1, deliveryStatus: 1 });
 module.exports = mongoose.model('Order', orderSchema);
 
 // Day 11: Added tracking number and deliveredAt fields
+// Day 13: Added stripeSessionId field
