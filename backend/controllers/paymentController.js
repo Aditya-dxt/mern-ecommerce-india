@@ -134,3 +134,4 @@ module.exports = { createCheckoutSession, handleWebhook, verifyPayment };
 // Day 13: Payment verification with session retrieval
 // Day 13: Filter non-HTTPS image URLs
 // Day 13: Detailed error logging
+// Day 13: Return Stripe error message to frontend
