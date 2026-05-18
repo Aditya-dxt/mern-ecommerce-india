@@ -131,3 +131,5 @@ export default function CheckoutSuccessPage() {
     </Suspense>
   );
 }
+
+// Day 14: Automatic payment verification
