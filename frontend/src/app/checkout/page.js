@@ -370,3 +370,4 @@ export default function CheckoutPage() {
 // Day 14: Payment method selector UI
 // Day 14: Animated radio buttons
 // Day 14: Stripe redirect implementation
+// Day 14: COD order flow
