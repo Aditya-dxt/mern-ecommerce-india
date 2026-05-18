@@ -366,3 +366,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+// Day 14: Payment method selector UI
