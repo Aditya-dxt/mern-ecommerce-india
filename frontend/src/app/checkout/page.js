@@ -372,3 +372,4 @@ export default function CheckoutPage() {
 // Day 14: Stripe redirect implementation
 // Day 14: COD order flow
 // Day 14: Test card info banner
+// Day 14: SSL badge and thumbnails
