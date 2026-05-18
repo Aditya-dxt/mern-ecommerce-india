@@ -134,3 +134,4 @@ export default function CheckoutSuccessPage() {
 
 // Day 14: Automatic payment verification
 // Day 14: Spinner and badge animation
+// Day 14: Cart clearance on success
