@@ -208,3 +208,5 @@ export default function DashboardPage() {
     </Suspense>
   );
 }
+
+// Day 15: Order status badges
