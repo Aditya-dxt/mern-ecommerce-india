@@ -889,3 +889,4 @@ export default function ProductDetailPage() {
 }
 
 // Day 15: Size selection with stock
+// Day 15: Quantity selector
