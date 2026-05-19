@@ -893,3 +893,4 @@ export default function ProductDetailPage() {
 // Day 15: Wishlist toggle
 // Day 15: Star ratings
 // Day 15: Review form
+// Day 15: Related products
