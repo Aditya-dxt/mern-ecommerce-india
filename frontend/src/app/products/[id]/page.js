@@ -894,3 +894,4 @@ export default function ProductDetailPage() {
 // Day 15: Star ratings
 // Day 15: Review form
 // Day 15: Related products
+// Day 15: Breadcrumb navigation
