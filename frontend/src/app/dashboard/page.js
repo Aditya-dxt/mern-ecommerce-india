@@ -210,3 +210,4 @@ export default function DashboardPage() {
 }
 
 // Day 15: Order status badges
+// Day 15: Wishlist tab
