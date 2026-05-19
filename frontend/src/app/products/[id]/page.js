@@ -887,3 +887,5 @@ export default function ProductDetailPage() {
     </div>
   );
 }
+
+// Day 15: Size selection with stock
