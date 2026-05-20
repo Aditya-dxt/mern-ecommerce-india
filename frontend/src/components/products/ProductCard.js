@@ -410,3 +410,5 @@ export default function ProductCard({ product }) {
     </Link>
   );
 }
+
+// Day 16: Brand descriptions
