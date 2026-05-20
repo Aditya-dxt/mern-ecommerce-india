@@ -286,3 +286,4 @@ export default function Navbar() {
 }
 
 // Day 12: Admin nav link
+// Day 16: Search overlay and mobile
