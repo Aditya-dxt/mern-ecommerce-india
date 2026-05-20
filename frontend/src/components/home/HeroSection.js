@@ -302,3 +302,5 @@ export default function HeroSection() {
     </div>
   );
 }
+
+// Day 16: Floating sneaker cards
