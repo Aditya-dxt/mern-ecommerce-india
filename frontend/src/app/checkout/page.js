@@ -374,3 +374,4 @@ export default function CheckoutPage() {
 // Day 14: Test card info banner
 // Day 14: SSL badge and thumbnails
 // Day 14: Error toast with actual Stripe message
+// Day 17: Order summary thumbnails
