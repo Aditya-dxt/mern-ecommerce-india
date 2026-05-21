@@ -899,3 +899,4 @@ export default function ProductDetailPage() {
 // Day 17: Brand-specific data
 // Day 17: Key Features
 // Day 17: Care Instructions
+// Day 17: Specifications tab
