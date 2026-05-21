@@ -518,3 +518,5 @@ export default function ProductsPage() {
     </div>
   );
 }
+
+// Day 17: Filter polish
