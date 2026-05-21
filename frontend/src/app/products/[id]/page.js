@@ -903,3 +903,4 @@ export default function ProductDetailPage() {
 // Day 17: Technology banner
 // Day 17: Color swatches
 // Day 17: Image gallery thumbnails
+// Day 17: Shipping info card
