@@ -901,3 +901,4 @@ export default function ProductDetailPage() {
 // Day 17: Care Instructions
 // Day 17: Specifications tab
 // Day 17: Technology banner
+// Day 17: Color swatches
