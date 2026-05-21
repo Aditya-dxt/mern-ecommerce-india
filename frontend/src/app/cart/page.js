@@ -211,3 +211,4 @@ function SummaryRow({ label, value }) {
 // Day 10: Added quantity validation against stock
 // Day 10: Added tax calculation at 8%
 // Day 17: Real product images
+// Day 17: Hover zoom
