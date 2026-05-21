@@ -896,3 +896,4 @@ export default function ProductDetailPage() {
 // Day 15: Related products
 // Day 15: Breadcrumb navigation
 // Day 17: 3-tab system
+// Day 17: Brand-specific data
