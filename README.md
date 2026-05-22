@@ -4,7 +4,7 @@ A modern, ultra-premium sneaker e-commerce web application built using the **MER
 
 This project has been developed step-by-step to simulate a **real-world production-level e-commerce platform**, focusing on clean architecture, scalability, and best practices.
 
-> 🔗 **Live Demo**: _Coming Soon_
+> 🔗 **Live Demo**: https://sneakervault-india.vercel.app/
 
 ---
 
